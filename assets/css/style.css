@@ -61,11 +61,40 @@ body {
     margin-right: auto;
 }
 
+.img-tips {
+    border-radius: 20%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #popular {
     padding-top: 15px;
     margin-left: 20px;
 }
 
+#jumbotron p {
+    color: black;
+}
+
+#jumbotron h1 {
+    color: black;
+}
+
+footer {
+    width: 70%;
+    background-color: rgb(228, 227, 227);
+    text-align: center;
+    height: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 25px;
+    border: 1px;
+    border-color: lightgrey;
+    border-style: solid;
+
+}
 /* #popularcategory {
     margin: auto;
 } */
@@ -75,9 +104,16 @@ body {
     display: block;
 }
 
-
+/*small image blocks text*/
 .caption {
     text-align: center;
+}
+
+.carousel-caption {
+    background-color: white;
+    opacity: 0.5;
+    color: black;
+    height: 60px;
 
 }
 
