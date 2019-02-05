@@ -20,7 +20,7 @@ body {
 
 #logo {
     width: 75%;
-    padding: 5px;
+    /* padding: 5px; */
     
 }
 
@@ -56,12 +56,19 @@ body {
 
 .img-fluid {
     border-radius: 20%;
-
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#popularcategory {
-    display: center;
+#popular {
+    padding-top: 15px;
+    margin-left: 20px;
 }
+
+/* #popularcategory {
+    margin: auto;
+} */
 
 #masthead #sample {
     height: 50%;
