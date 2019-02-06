@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        
+</head>
+<body>
+        <form class="form-inline my-2 my-lg-0" id="search">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" id="input-search" aria-label="Search">
+                <button type="submit" class="btn btn-light" id="search-button">Search</button>
+        </form>
+
+<script src="https://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+
+// This is UNFINISHED test code. You can successfully make the ajax call from the search box to view it in console log.
+
+$("#search-button").on("click", function(event) {
+
+        event.preventDefault();
+        console.log(event);
+        $.ajax({
+   type: 'GET',
+
+   url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=tomato',
+   headers: {
+       "X-RapidAPI-Key":"fcf6393cacmsh89758243f1dbfabp145f90jsn532e3e1e19c6"
+   },
+    error: function(err) {
+        console.log(err); //or whatever
+    }
+       }).done(function(data) {
+           console.log(data);
+               for (i=0;i<data.results.length;i++){
+           //variable for return titles and images.
+                   var returnTitle = data.results[i].title;
+                   var picImage = data.results[i].image;
+
+           //create div for single reutrn item.
+                   var searchResults = $("<div>");
+           //create <p> tag for returnTitles.
+                   var p = $("<p>").text("Yummmy: " + returnTitle);
+                   p.addClass("title-search");
+                   //console.log(p);
+           //create image tag for returned images.
+                   var returnImage = $("<img>");
+                   returnImage.addClass('image-search');
+           //give the image tag src and attributes for the returned results.
+                //    returnImage.attr("src", baseUrl+picImage);
+           //appending the images and titles to the tags we created.
+                   searchResults.append(returnImage);
+                   searchResults.append(p);
+           //appending the div(titles abd images) package to our html index page.
+                   $("#picture-boxes").prepend(searchResults);
+
+        }})
+});
+
+function ourRecipe(Food, Diet, Exclude, Intolerance, returnNum, Theme){
+
+   $.ajax({
+   type: 'GET',
+
+   url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?&query='+Food,
+   headers: {
+       "X-RapidAPI-Key":"fcf6393cacmsh89758243f1dbfabp145f90jsn532e3e1e19c6"
+   },
+       }).done(function(data) {
+           console.log(data);
+               for (i=0;i<data.results.length;i++){
+           //variable for return titles and images.
+                   var returnTitle = data.results[i].title;
+                   var picImage = data.results[i].image;
+
+           //create div for single reutrn item.
+                   var searchResults = $("<div>");
+           //create <p> tag for returnTitles.
+                   var p = $("<p>").text("Yummmy: " + returnTitle);
+                   p.addClass("title-search");
+                   //console.log(p);
+           //create image tag for returned images.
+                   var returnImage = $("<img>");
+                   returnImage.addClass('image-search');
+           //give the image tag src and attributes for the returned results.
+                   returnImage.attr("src", baseUrl+picImage);
+           //appending the images and titles to the tags we created.
+                   searchResults.append(returnImage);
+                   searchResults.append(p);
+           //appending the div(titles abd images) package to our html index page.
+                   $("#picture-boxes").prepend(searchResults);
+
+        }})
+};
+
+
+</script>
+
+</body>
+</html>
