@@ -1,7 +1,9 @@
 body {
     background-image: url("../images/background2.jpg");
-    
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
+
 #jumbotron {
     background-image: url("../images/back13.jpg"); 
     /* background-color: lightgoldenrodyellow; */
@@ -116,6 +118,44 @@ footer {
     height: 60px;
 
 }
+
+#navbarTogglerDemo01 {
+    background-color: rgb(236, 235, 235);
+    padding-left: 10px;
+}
+
+@media only screen and (max-width: 1100px) {
+    #jumbotron {
+        font-size: 14px;
+    }
+
+    #jumbotron h1 {
+        font-size: 26px;
+    }
+
+    #jumbotron h3 {
+        font-size: 22px;
+    }
+
+    #logo {
+        width: 100%;
+    }
+
+    #navbar {
+        height: 60px;
+        
+    }
+
+    #navbarSupportedContent {
+        display: block !important;
+    }
+
+    
+    
+
+}
+
+
 
 
 
