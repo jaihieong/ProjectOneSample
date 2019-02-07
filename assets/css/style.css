@@ -21,7 +21,8 @@ body {
 }
 
 #logo {
-    width: 75%;
+    width: 25%;
+    float: right;
     /* padding: 5px; */
     
 }
@@ -39,8 +40,8 @@ body {
     font-family: 'Courgette', cursive;
 }
 
-#carouselExampleControls {
-    width: 55%;
+#carousel-example-generic {
+    width: 40%;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -63,25 +64,22 @@ body {
     margin-right: auto;
 }
 
-.img-tips {
-    border-radius: 20%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
 
 #popular {
     padding-top: 15px;
     margin-left: 20px;
 }
 
-#jumbotron p {
+ #jumbotron p {
     color: black;
+    padding-left: 45px;
+
 }
 
 #jumbotron h1 {
     color: black;
-}
+    padding-left: 45px;
+} 
 
 footer {
     width: 70%;
@@ -137,9 +135,6 @@ footer {
         font-size: 22px;
     }
 
-    #logo {
-        width: 100%;
-    }
 
     #navbar {
         height: 60px;
