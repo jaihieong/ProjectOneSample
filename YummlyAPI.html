@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery.js"></script>
+</head>
+<body>
+        <form class="form-inline my-2 my-lg-0" id="search">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" id="input-search" aria-label="Search">
+                <button type="submit" class="btn btn-light" id="search-button">Search</button>
+            </form>      
+<div id="display-name"></div>
+<!-- <div id="display-image"></div>
+<div id="display-rating"></div> -->
+
+<script>
+// On click for search box to call SEARCH API
+$("#search-button").on("click", function(event) {
+    event.preventDefault();
+    var appID = "c264894e&";
+    //
+    var apiKey = "f5984f792fe199d55811bb9a14dd9e5c";
+    var searchTerm = $("#input-search").val();
+    // Here we are building the URL we need to query the database
+    var queryURL = "https://api.yummly.com/v1/api/recipes?_app_id=" +appID+ "_app_key=" + apiKey +"&q="+searchTerm;
+    
+    // Here we run our AJAX call to the OpenWeatherMap API
+    $.ajax({
+    url: queryURL,
+    method: "GET"
+    })
+    // We store all of the retrieved data inside of an object called "response"
+    .then(function(response) {
+
+        $("#display-name").empty();
+
+        var recipeID;
+        var recipeName;
+        var image;
+        var rating;
+        for (var i = 0; i < 10; i++){
+            // var newDiv = $("<div>");
+            // var newImage = $("<img>");
+
+            // recipeID =  newDiv.text(response.matches[i].id);
+            recipeName = $("<div>").text(response.matches[i].recipeName);
+            image = $("<img>").attr("src", response.matches[i].smallImageUrls);
+            rating = $("<div>").text(response.matches[i].rating);
+
+            $("#display-name").append(recipeName);
+            $("#display-name").append(image);
+            $("#display-name").append(rating);
+
+        }
+        // Log the queryURL
+        console.log(queryURL);
+        // Log the resulting object
+        console.log(response);
+    });
+});
+
+// on click for GET API _ unfinished code 2/6/19 - 8:45pm
+$("#").on("click", function(event) {
+    event.preventDefault();
+    var appID = "c264894e&";
+    //
+    var apiKey = "f5984f792fe199d55811bb9a14dd9e5c";
+    // Here we are building the URL we need to query the database
+    var queryURL = "https://api.yummly.com/v1/api/recipe/" + recipeID + "?_app_id=" + appID + "&_app_key=" + apiKey;
+    
+    // Here we run our AJAX call to the OpenWeatherMap API
+    $.ajax({
+    url: queryURL,
+    method: "GET"
+    })
+    // We store all of the retrieved data inside of an object called "response"
+    .then(function(response) {
+
+        console.log(response);
+    });
+});
+
+</script>
+      
+</body>
+</html>
