@@ -13,6 +13,8 @@
                 <button type="submit" class="btn btn-light" id="search-button">Search</button>
         </form>
 
+        <div id="display-info"></div> 
+
 <script src="https://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 
@@ -21,18 +23,20 @@
 $("#search-button").on("click", function(event) {
 
         event.preventDefault();
-        console.log(event);
-        $.ajax({
-   type: 'GET',
+        // console.log(event);
+        var searchInput = $("#input-search").val().trim();
 
-   url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=tomato',
-   headers: {
-       "X-RapidAPI-Key":"fcf6393cacmsh89758243f1dbfabp145f90jsn532e3e1e19c6"
-   },
-    error: function(err) {
-        console.log(err); //or whatever
-    }
-       }).done(function(data) {
+        $.ajax({
+                type: 'GET',
+
+                url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=" + searchInput,
+                headers: {
+                "X-RapidAPI-Key":"fcf6393cacmsh89758243f1dbfabp145f90jsn532e3e1e19c6"
+                },
+                error: function(err) {
+                        console.log(err); //or whatever
+                }
+        }).done(function(data) {
            console.log(data);
                for (i=0;i<data.results.length;i++){
            //variable for return titles and images.
