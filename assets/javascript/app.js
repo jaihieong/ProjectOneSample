@@ -20,6 +20,7 @@ $("#search-button").on("click", function(event) {
     searchAPI(searchTerm);
 });
 
+
 // pull data from API via search
 var searchAPI = function(searchTerm) {
 
@@ -174,4 +175,47 @@ function hdImgURL(url) {
     newArrayUrl.push("1500"); 
     var newURL = newArrayUrl.join('');
     return newURL;
+
+    console.log(newURL);
 };
+
+//YouTube function starts here
+
+    $("#search-result").on("click", "tr", function(event) {
+        $("#search-result").empty();
+        event.preventDefault();
+        
+        var recipeRandom = ["cooking", "recipe"];
+        var youtube = $("#input-search").val();
+        var youtube1 = $("#input-search").val() + recipeRandom[0];
+        var youtube2 = $("#input-search").val() + recipeRandom[1];
+        //
+        var queryURL = "https://www.youtube.com/embed/?listType=search&list=" + youtube + "&loop=3";
+        var queryURL1 = "https://www.youtube.com/embed/?listType=search&list=" + youtube1 + "&loop=1";
+        var queryURL2 = "https://www.youtube.com/embed/?listType=search&list=" + youtube2 + "&loop=1";
+
+        var frame = $("<iframe class=embed-responsive-item>").attr("src", queryURL );
+        var frame1 = $("<iframe class=embed-responsive-item>").attr("src", queryURL1 );
+        var frame2 = $("<iframe class=embed-responsive-item>").attr("src", queryURL2 );
+                // var frame1 = $("<tr>").html(frame);        
+        $("#random-recipes").append(frame, frame1, frame2);
+    });
+    
+ var player;
+
+function onYouTubeIframeAPIReady(){
+        player = new YT.Player('player',    {
+          height: '500',
+          width: '500',
+        events : {
+        'onReady' : onPlayerReady,
+        'onStateChange' : onPlayerStateChange
+        }
+        });
+        }
+function onPlayerReady(e){
+       //console.log('youtube player is ready');
+        } 
+    function onPlayerStateChange(e){
+        //console.log('player state change');
+    }
