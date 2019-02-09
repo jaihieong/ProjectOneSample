@@ -138,6 +138,118 @@ $("#search-button-2").on("click", function(event) {
 });
 
 
+//////////////////////////////////////////////////////////////////////////
+// Random practice code
+$.ajax({
+    url: "",
+    method: "GET"
+}).then(function(response) {
+    //do something after the object loads;
+});
+
+
+// code from Olga
+console.log("working");
+var recipeArray = [];
+$("#search-button").on("click", function(event) {
+    event.preventDefault();
+    var appID = "c264894e&";
+    //
+    var apiKey = "f5984f792fe199d55811bb9a14dd9e5c";
+    var searchTerm = $("#input-search").val();
+    // Here we are building the URL we need to query the database
+    var queryURL = "https://api.yummly.com/v1/api/recipes?_app_id=" +appID+ "_app_key=" + apiKey +"&q="+searchTerm;
+    
+    // Here we run our AJAX call to the OpenWeatherMap API
+    $.ajax({
+    url: queryURL,
+    method: "GET"
+    })
+    // We store all of the retrieved data inside of an object called "response"
+    .then(function(response) {
+        $("#containerResults").empty();
+        //Create variables to hold name, image and rating of each recipe
+        var recipeID;
+        var recipeName;
+        var image;
+        var rating;
+        for (var i = 0; i < 10; i++){
+            //Storing the name of the recipe
+            var name = response.matches[i].recipeName;
+            //Storing the image of the recipe
+            var imgURL = response.matches[i].smallImageUrls;
+            //Storing the rating of the ricipe
+            var rate = response.matches[i].rating;
+            //Storing the recipeID 
+            var recID = response.matches[i].id;
+            //Storing the resipe ID's in array
+            recipeArray.push(recID);
+            //Create an element in HTML to hold thr recipe name
+            recipeName = $("<p>").text(name);
+            recipeName.addClass("recipename");
+            //Create an element in HTML to hold the image of the recipe
+            image = $("<img>").attr("src", imgURL);
+            image.addClass("recipeimage");
+            image.attr("id", i);
+            //Create the element in HTML to hold the rating of the image
+            rating = $("<p>").text(rate);
+            rating.addClass("reciperating");
+            //Create the element in HTML to hold the recipeID
+            recipeID = $("<p>").text(recID);
+            recipeID.attr("id", i);
+            //Create a row and append name, image and rating of 1 recipe
+            var newRow = $("<tr>").append(
+                $("<td>").append(recipeName),
+                $("<td>").append(image),
+                //$("<td>").append("Rating of the recipe: " + rating),  
+                //$("<td>").append(recipeID),      
+            );
+        
+            // // Append the new row to the table
+            $("#containerResults").append(newRow);
+        }
+    });
+});
+// // on click for GET API _ unfinished code 2/8/19 - 6:28am
+//The image was dinamicaly created then i have to make the following syntax for the event
+//using "img" when on "click"
+$("#containerResults").on("click", "img", function() {
+    //  event.preventDefault();
+    //User click on recipeID, this way we able to pull the index of recipe
+    var choice = $(this).attr("id");
+    console.log(choice);
+    //Having index of recipe we can pull out the recipeID from array
+    var singleRecipeID = recipeArray[choice];
+    console.log(singleRecipeID);
+    var appID = "c264894e&";
+    //
+    var apiKey = "f5984f792fe199d55811bb9a14dd9e5c";
+    // Here we are building the URL we need to query the database
+    var queryURL = "https://api.yummly.com/v1/api/recipe/" + singleRecipeID + "?_app_id=" + appID + "&_app_key=" + apiKey;
+  
+    // Here we run our AJAX call to the OpenWeatherMap API
+    $.ajax({
+    url: queryURL,
+    method: "GET"
+    })
+    // We store all of the retrieved data inside of an object called "response"
+    .then(function(response) {
+        //Empty the div container from the list of recipes,
+        //for displaying the single recipe result
+        $("#containerResults").empty();
+        //Create variables to store the name, image and ingredient list of single recipe
+        var singleRecipeName = response.name;
+        var singleRecipeImgURL = response.images.hostedMediumUrl;
+        var singleRecipeIngredients = response.ingredientLines;
+        //Create elements in HTML to hold the name, image and ingredient list
+        var singleRecipeNameDisplay = $("<p>").text(singleRecipeName);
+        var singleRecipeImgDisplay = $("<img>").attr("src", singleRecipeImgURL);
+        var singleRecipeIngredientsDisplay = $("<p>").text("Ingredients: " + singleRecipeIngredients);
+        //Display in HTML all the above data
+        $("#containerResults").append(singleRecipeNameDisplay, singleRecipeImgDisplay, singleRecipeIngredientsDisplay);
+    //console.log(response);
+    });
+ });
 
 </script>
       
