@@ -20,7 +20,6 @@ $("#search-button").on("click", function(event) {
     searchAPI(searchTerm);
 });
 
-
 // pull data from API via search
 var searchAPI = function(searchTerm) {
 
@@ -42,10 +41,11 @@ var searchAPI = function(searchTerm) {
 // The createRow function takes data returned by API and appends the table data to the tbody
 var createRow = function(response) {
     $("#search-result").empty();
+    $("#search-result").show();
+    $("#carouselExampleIndicators").hide();
     // create a new table row element
     for (var i = 0; i < 10; i++) {
-        var table = $("<table>");
-        var tHead = $("<thead>");
+        
         var tRow = $("<tr>");
 
         var recipeTitle = $("<td>").text(response.matches[i].recipeName);
@@ -81,6 +81,18 @@ $("#search-result").on("click", "tr", function(event) {
     getAPI(recipeID);
 
 });
+
+// click event for drop-down menu items
+$(".dropdown-menu").on("click", "a", function(event) {
+    // prevent page from refreshing
+    event.preventDefault();
+
+    $("#search-result-list").empty();
+    //Create variable to read and store the clicked category/cuisine
+    var searchTerm = $(this).attr("data");
+    searchAPI(searchTerm);
+});
+
 
 // pull data from API via GET call to access specific recipe item
 var getAPI = function(recipeID) {
@@ -124,6 +136,7 @@ var createRowGetAPI = function(response) {
     $("#search-result").append(image, recipeName, cookTime, ingredients, rating, category, source, serving);
 };
 
+// display carousel images from Yummly API
 window.onload = function() {
     var appID = "c264894e&";
     //
@@ -157,65 +170,85 @@ window.onload = function() {
         //console.log(arrayRandomRecipes);
         }
 
-        var randomURL = arrayRandomRecipes[Math.floor(Math.random() * arrayRandomRecipes.length)];
+        function getValue() {
+            var randomValue;
+            do {
+                randomValue = Math.floor(Math.random() * 10);
+            } while(randomValue === index1 || randomValue === index2 || randomValue === index3);
+            return randomValue;
+        };
+
+        var index1 = getValue();
+        var index2 = getValue();
+        var index3 = getValue();
+        console.log(index1, index2, index3);
+
+        var randomURL1 = arrayRandomRecipes[index1];
+        var randomURL2 = arrayRandomRecipes[index2];
+        var randomURL3 = arrayRandomRecipes[index3];
         //console.log(randomURL);
-        var newURL = hdImgURL(randomURL[0]);
+        var newURL1 = hdImgURL(randomURL1[0]);
+        var newURL2 = hdImgURL(randomURL2[0]);
+        var newURL3 = hdImgURL(randomURL3[0]);
 
-        $("#first-image").attr("src", newURL);
-        $("#second-image").attr("src", newURL);
-        $("#third-image").attr("src", newURL);
-
+        $("#first-image").attr("src", newURL1);
+        $("#second-image").attr("src", newURL2);
+        $("#third-image").attr("src", newURL3);
     });
 
 };
 
+function randomURL (url) {
+    var newURL = arrayRandomRecipes[Math.floor(Math.random() * arrayRandomRecipes.length)];
+    return newURL;
+};
+
+// function to grab image link in high definition 
 function hdImgURL(url) {
     var arrayURL = url.split('');
     var newArrayUrl = arrayURL.slice(0, arrayURL.length - 2);
     newArrayUrl.push("1500"); 
     var newURL = newArrayUrl.join('');
     return newURL;
-
-    console.log(newURL);
 };
 
 //YouTube function starts here
 
-    $("#search-result").on("click", "tr", function(event) {
-        $("#search-result").empty();
-        event.preventDefault();
-        
-        var recipeRandom = ["cooking", "recipe"];
-        var youtube = $("#input-search").val();
-        var youtube1 = $("#input-search").val() + recipeRandom[0];
-        var youtube2 = $("#input-search").val() + recipeRandom[1];
-        //
-        var queryURL = "https://www.youtube.com/embed/?listType=search&list=" + youtube + "&loop=3";
-        var queryURL1 = "https://www.youtube.com/embed/?listType=search&list=" + youtube1 + "&loop=1";
-        var queryURL2 = "https://www.youtube.com/embed/?listType=search&list=" + youtube2 + "&loop=1";
-
-        var frame = $("<iframe class=embed-responsive-item>").attr("src", queryURL );
-        var frame1 = $("<iframe class=embed-responsive-item>").attr("src", queryURL1 );
-        var frame2 = $("<iframe class=embed-responsive-item>").attr("src", queryURL2 );
-                // var frame1 = $("<tr>").html(frame);        
-        $("#random-recipes").append(frame, frame1, frame2);
-    });
+$("#search-result").on("click", "tr", function(event) {
+    $("#random-recipes").empty();
+    event.preventDefault();
     
- var player;
+    var recipeRandom = ["cooking", "recipe"];
+    var youtube = $("#input-search").val();
+    var youtube1 = $("#input-search").val() + recipeRandom[0];
+    var youtube2 = $("#input-search").val() + recipeRandom[1];
+    //
+    var queryURL = "https://www.youtube.com/embed/?listType=search&list=" + youtube + "&loop=1";
+    var queryURL1 = "https://www.youtube.com/embed/?listType=search&list=" + youtube1 + "&loop=1";
+    var queryURL2 = "https://www.youtube.com/embed/?listType=search&list=" + youtube2 + "&loop=1";
+
+    var frame = $("<iframe class=embed-responsive-item>").attr("src", queryURL );
+    var frame1 = $("<iframe class=embed-responsive-item>").attr("src", queryURL1 );
+    var frame2 = $("<iframe class=embed-responsive-item>").attr("src", queryURL2 );
+            // var frame1 = $("<tr>").html(frame);        
+    $("#random-recipes").append(frame, frame1, frame2);
+});
+
+var player;
 
 function onYouTubeIframeAPIReady(){
-        player = new YT.Player('player',    {
-          height: '500',
-          width: '500',
-        events : {
-        'onReady' : onPlayerReady,
-        'onStateChange' : onPlayerStateChange
-        }
-        });
-        }
-function onPlayerReady(e){
-       //console.log('youtube player is ready');
-        } 
-    function onPlayerStateChange(e){
-        //console.log('player state change');
+    player = new YT.Player('player',    {
+      height: '500',
+      width: '500',
+    events : {
+    'onReady' : onPlayerReady,
+    'onStateChange' : onPlayerStateChange
     }
+    });
+    }
+function onPlayerReady(e){
+   //console.log('youtube player is ready');
+    } 
+function onPlayerStateChange(e){
+    //console.log('player state change');
+}

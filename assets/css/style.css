@@ -60,6 +60,7 @@ h1, h5, p {
     border-style: solid;
     padding: 10px;
     opacity: 0.6;
+   
 }
 
 .footer {
@@ -107,7 +108,7 @@ h1, h5, p {
 .table-search {
     text-align: center;
     background-color: white;
-    opacity: 0.65;
+    /* opacity: 0.65; */
     font-family: 'Courgette', cursive;
 }
 /***************** lines by Jai *******************/
