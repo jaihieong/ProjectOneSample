@@ -175,3 +175,30 @@ function hdImgURL(url) {
     var newURL = newArrayUrl.join('');
     return newURL;
 };
+
+//YouTube function starts here
+
+    $("#search-result").on("click", "tr", function(event) {
+        event.preventDefault();
+        var youtube = $("#input-search").val();
+        var queryURL = "https://www.youtube.com/embed/?listType=search&list=" + youtube + "&loop=1";
+        var frame = $("<iFrame>").attr("src", queryURL );
+        $("#random-recipes").append(frame);
+    });
+    
+       var player;
+
+function onYouTubeIframeAPIReady(){
+        player = new YT.Player('player', {
+        events : {
+        'onReady' : onPlayerReady,
+        'onStateChange' : onPlayerStateChange
+        }
+        });
+        }
+function onPlayerReady(e){
+       //console.log('youtube player is ready');
+        } 
+    function onPlayerStateChange(e){
+        //console.log('player state change');
+    }
