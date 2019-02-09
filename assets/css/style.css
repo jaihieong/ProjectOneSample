@@ -6,11 +6,11 @@ body {
     
 }
 
-h1, h3, p {
+h1, h5, p {
     margin: 40px;
 }
 
-.header{
+/* .header{
     background-image: url("../images/back13.jpg");
     font-family: 'Courgette', cursive;
     font-size: 18px;
@@ -21,7 +21,7 @@ h1, h3, p {
     border: 1px;
     border-color: lightgrey;
     border-style: solid;
-}
+} */
 
 #logo {
     width: 10%;
@@ -34,6 +34,7 @@ h1, h3, p {
     border: 1px;
     border-color: lightgrey;
     border-style: solid;
+    /* opacity: 0.6; */
     
 }
 
@@ -42,7 +43,6 @@ h1, h3, p {
     display: block;
     margin-left: auto;
     margin-right: auto;
-
 }
 
 .carousel-inner {
@@ -50,7 +50,7 @@ h1, h3, p {
 }
 
 #random-recipes {
-    background-image: url("../images/back13.jpg");
+    background-color: whitesmoke; 
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -59,16 +59,17 @@ h1, h3, p {
     border-color: lightgrey;
     border-style: solid;
     padding: 10px;
+    opacity: 0.6;
 }
 
 .footer {
-    background-image: url("../images/back13.jpg");
+    background-color: whitesmoke;
     text-align: center;
     padding: 0;
-    border: 1px;
-    border-color: lightgrey;
-    border-style: solid;
-   
+    /* border: 1px; */
+    /* border-color: lightgrey;
+    border-style: solid; */
+    opacity: 0.6;
 
 }
 
@@ -103,7 +104,8 @@ h1, h3, p {
 } */
 
 /***************** lines by Jai *******************/
-#search-result {
+.table-search {
+    text-align: center;
     background-color: white;
     opacity: 0.65;
     font-family: 'Courgette', cursive;

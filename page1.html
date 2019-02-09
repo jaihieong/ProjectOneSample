@@ -18,11 +18,13 @@
         integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 
 <body>
     <!-- Container for the header -->
-    <div class="container">
+    <!-- <div class="container">
         <div class="header">
             <h1>Foodie-Leaks</h1>
             <p>Best place for recipe hunting!</p>
@@ -31,7 +33,7 @@
             </span>
             
         </div>
-    </div>
+    </div> -->
 
     <!-- <div class="container head-master">
         <div class="row">
@@ -51,6 +53,7 @@
         <div class="row">
             <div class="col-lg">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <h1>Foodie-Leaks</h1>
                     <a class="navbar-brand" href="page1.html">Home</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,26 +62,30 @@
                 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
-                            <!-- <li class="nav-item active">
-                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
-                            </li> -->
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
                                     Categories
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Main Dishes</a>
+                                    <a class="dropdown-item" href="#">Side Dishes</a>
+                                    <a class="dropdown-item" href="#">Soups</a>
                                     <a class="dropdown-item" href="#">Desserts</a>
-                                    <a class="dropdown-item" href="#">Proteins</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <a class="dropdown-item" href="#">Snacks</a>
                                 </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    World Cusine
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Asian</a>
+                                    <a class="dropdown-item" href="#">Greek</a>
+                                    <a class="dropdown-item" href="#">Italian</a>
+                                    <a class="dropdown-item" href="#">Mexican</a>
+                                </div>
                             </li>
                         </ul>
                         <form class="form-inline my-2 my-lg-0">
@@ -98,24 +105,38 @@
 
     <div class="container">
         <!-- result table from search -->
-                
-        <div id="search-result">
 
-                                
-            
-            <!-- <table id="result-table" class="table">
-                <thead id="search-result-head">
+        <div id="search-result" class="table-search">
+            <table class="table table-striped">
+                <thead>
                     <tr>
-                        <th scope="col">Recipe Title</th>
-                        <th scope="col">image</th>
-                        <th scope="col">Rating</th>
-                        <th scope="col">RecipeID</th>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
                     </tr>
-                </thead>  decided that we will not need the table header
-                <tbody id="search-result-list">
-                    
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                  </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
                 </tbody>
-            </table> -->
+            </table>
         </div>
                 <!-- close result table div-->
         <div class="container">
@@ -159,14 +180,18 @@
 
     <div class="container">
         <div id="random-recipes">
-            <h3>Random Recipes:</h3>
+            <h5>Random Recipes:</h5>
         </div>
     </div>
     <!-- Footer -->
     <div class="container">
         <div class="footer">
             <div class="card-header">
-                <h5 class="Copyright">Copyright &copy; 2019</h5>
+                <h6>Powered By:</h6>
+                <span>
+                    <i class="fab fa-youtube"></i>    
+                </span>
+                <h6 class="Copyright">Copyright &copy; 2019</h6>
             </div>
          </div>
     </div>
