@@ -129,6 +129,7 @@ var createRowGetAPI = function(response) {
     $("#recipe-items").hide();
     // $("#random-recipes").empty();
     var recipeName = $("<tr>").text(response.name);
+    recipeName.attr("id", "recipe-name");
     var cookTime = $("<tr>").text(response.totalTime);
     var ingredients = $("<tr>").text(response.ingredientLines);
     var rating = $("<tr>").text(response.rating);
