@@ -124,6 +124,12 @@ margin-top: 30px;
     /* opacity: 0.65; */
     font-family: 'Courgette', cursive;
 }
+
+.carousel-inner h3 {
+    background-color: white;
+    color: rgb(49, 170, 49);
+    opacity: 0.5;
+}
 /***************** lines by Jai *******************/
 
 
