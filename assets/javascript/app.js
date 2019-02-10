@@ -121,29 +121,60 @@ var getAPI = function(recipeID) {
 };
 // creating data to display for specific recipe
 var createRowGetAPI = function(response) {
-    
-    $("#search-result").empty();
-    $("#search-result").show();
+    $("#single-recipe-result").show();
+
+    // $("#search-result1").empty();
+    // $("#search-result1").show();
+    // $("#search-result2").empty();
+    // $("#search-result2").show();
+    // $("#search-result3").empty();
+    // $("#search-result3").show();
+    // $("#search-result").show();
+
     $("#carouselExampleIndicators").hide();
     $(".olgas-tip-cards").hide();
     $("#recipe-items").hide();
     // $("#random-recipes").empty();
     var recipeName = $("<tr>").text(response.name);
-    recipeName.attr("id", "recipe-name");
-    var cookTime = $("<tr>").text(response.totalTime);
-    var ingredients = $("<tr>").text(response.ingredientLines);
-    var rating = $("<tr>").text(response.rating);
-    var category = $("<tr>").text(response.attributes.course[0]);
-    var source = $("<tr>").text(response.source.sourceRecipeUrl);
-    var serving = $("<tr>").text(response.numberOfServings);
-    var image = $("<img>").attr("src", response.images[0].hostedLargeUrl);
+    recipeName.attr("id", "single-recipe-name");    
+    var category = $("<tr>").text("Recipe category: " + response.attributes.course[0]);
+    category.attr("id", "single-recipe-category");
+    var cookTime = $("<tr>").text("Cooking time: " + response.totalTime);
+    cookTime.attr("id", "single-recipe-cooktime");
+    var ingredients = $("<tr>").text("Ingredients: " + response.ingredientLines);
+    ingredients.attr("id", "single-recipe-ingredients");
+    var rating = $("<tr>").text("Rating of the recipe: " + response.rating);
+    rating.attr("id", "single-recipe-rating");
+    var urllink = response.source.sourceRecipeUrl;
+    console.log(urllink);
+    //var source = $("<tr>").text(response.source.sourceRecipeUrl);
+    var thelink = $('<a>',{
+        id: "urllink",
+        text: 'Click here to see the instructions',
+        title: 'instructions for recipe',
+        href: urllink,
+        target: "_blank"
+    }).appendTo('#search-result4');
     
-    $("#search-result").append(image, recipeName, cookTime, ingredients, rating, category, source, serving);
-    console.log(cookTime);
-    console.log(recipeName);
+    var serving = $("<tr>").text("The meal will serve: " + response.numberOfServings);
+    serving.attr("id", "single-recipe-serving");
+    var image = $("<img>").attr("src", response.images[0].hostedLargeUrl);
+    image.attr("id", "single-recipe-image");
+    // var lineBreak = $("<tr>").text(" ");
+    
+    // $("#search-result").append(image, recipeName, category, cookTime,  rating, serving, ingredients, source);
+    $("#search-result1").append(image);
+    $("#search-result2").append(recipeName, category, cookTime, rating, serving);
+    $("#search-result3").append(ingredients);
+
+    // console.log(cookTime);
+    // console.log(recipeName);
+    // console.log(ingredients);
+
 };
 // display carousel images from Yummly API
 window.onload = function() {
+    $("#single-recipe-result").hide();
     var appID = "c264894e&";
     //
     var apiKey = "f5984f792fe199d55811bb9a14dd9e5c";

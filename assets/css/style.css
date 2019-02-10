@@ -95,43 +95,14 @@ margin-top: 30px;
 
 }
 
-
-
-
-/* @media only screen and (max-width: 1100px) {
-    #jumbotron {
-        font-size: 14px;
-    }
-
-    #jumbotron h1 {
-        font-size: 26px;
-    }
-
-    #jumbotron h3 {
-        font-size: 22px;
-    }
-
-
-    #navbar {
-        height: 60px;
-        
-    }
-
-    #navbarSupportedContent {
-        display: block !important;
-    }
-
-    
-    
-
-} */
-
 /***************** lines by Jai *******************/
 .table-search {
    /* text-align: center;*/
     background-color: white;
-    /* opacity: 0.65; */
+    /*opacity: 0.65;*/ 
     font-family: 'Courgette', cursive;
+    border-radius: 2%;
+
 }
 
 .carousel-inner h3 {
@@ -141,16 +112,64 @@ margin-top: 30px;
 }
 /***************** lines by Jai *******************/
 
-/* img {
-    margin-top: 50px;
-    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 22px 0 rgba(0, 0, 0, 0.19);
-    margin-left: 50px;
-} */
 
-#recipe-name {
-    font-size: 30px;
-    float: right;
+
+#search-result1 {
+    margin-top: 30px;
 }
+
+#search-result2 {
+    margin-top: 30px;
+    text-align: center; 
+}
+
+#search-result3 {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+#search-result4 {
+    text-align: left;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    color: whitesmoke;
+
+}
+
+#urllink  {
+    color: darkgreen;
+    text-shadow: 2px 2px rgb(91, 224, 91);
+
+}
+
+#single-recipe-ingredients {
+    text-align: center;
+    font-size: 20px;
+}
+
+#single-recipe-name {
+    font-size: 35px;
+    text-shadow: 2px 2px rgb(91, 224, 91);
+    font-style: bold;
+}
+
+#single-recipe-image {
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2), 0 10px 24px 0 rgba(0, 0, 0, 0.19);
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+} 
+
+#single-recipe-category {
+    margin-top: 40px;
+}
+
+#single-recipe-result {
+    box-shadow: 0 0 12px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+
 
 
 
