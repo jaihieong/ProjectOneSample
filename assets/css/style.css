@@ -112,19 +112,31 @@ margin-top: 30px;
 }
 
 /***************** lines by Jai *******************/
-.table-search {
-   /* text-align: center;*/
+/*.table-search {
+   /* text-align: center;
     background-color: white;
-    /*opacity: 0.65;*/ 
+    /*opacity: 0.65;
     font-family: 'Courgette', cursive;
     border-radius: 2%;
 
-}
+}**/
+.table-search {
+    /* text-align: center;*/
+     background-color: white;
+     /* opacity: 0.65; */
+     font-family: 'Courgette', cursive;
+     padding: 10%;
+     margin: auto;
+     border-radius: 2%;
+    
+ }
 
 .carousel-inner h3 {
-    background-color: white;
-    color: rgb(49, 170, 49);
-    opacity: 0.5;
+    background-color: none;
+    color: white black;
+    text-shadow: 0 0 3px rgb(0, 0, 0);
+    opacity: none;
+
 }
 /***************** lines by Jai *******************/
 
@@ -164,24 +176,9 @@ margin-top: 30px;
     font-size: 20px;
 }
 /***************** lines by Jai *******************/
-.table-search {
-   /* text-align: center;*/
-    background-color: white;
-    /* opacity: 0.65; */
-    font-family: 'Courgette', cursive;
-    padding: 10%;
-    margin: auto;
-    border-radius: 2%;
-   
-}
 
-.carousel-inner h3 {
-    background-color: none;
-    color: white black;
-    text-shadow: 0 0 3px rgb(0, 0, 0);
-    opacity: none;
 
-}
+
 
 #single-recipe-name {
     font-size: 35px;

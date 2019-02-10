@@ -54,12 +54,12 @@ var createRow = function(response) {
         var imageTD = $("<td>").append(image);
         var rating = $("<td>").text(response.matches[i].rating);
         // probably will not need this code below to display on html
-        var recipeIDtd = $("<td>").text(response.matches[i].id);
+        // var recipeIDtd = $("<td>").text(response.matches[i].id);
         var recipeID = response.matches[i].id;
         tRow.addClass("searchResult");
         tRow.attr("IDdata", recipeID);
-        
-        tRow.append(recipeTitle, image, rating, recipeIDtd);
+        var ratingText = "rating: "
+        tRow.append(recipeTitle, ratingText, rating, image);
         $("#search-result").append(tRow);
     }
     
