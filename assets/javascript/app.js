@@ -1,4 +1,4 @@
-console.log("First line of javascript file");
+console.log("Javascript Line 1");
 $("#search-result").hide();
 $("#carouselExampleIndicators").show();
 
@@ -75,6 +75,7 @@ $("#search-result").on("click", "tr", function(event) {
     var recipeID = $(this).attr("IDdata");
     console.log(recipeID + "from click event");
     getAPI(recipeID);
+
 });
 
 // click event for drop-down menu items
@@ -87,6 +88,7 @@ $(".dropdown-menu").on("click", "a", function(event) {
     searchAPI(searchTerm);
 });
 
+// click event for random recipe items
 $("#random-recipes").on("click", "img", function(event) {
     event.preventDefault();
     var recipeID = $(this).attr("data");
@@ -94,6 +96,17 @@ $("#random-recipes").on("click", "img", function(event) {
     getAPI(recipeID);
 
 });
+
+// click event for random recipe items
+$(".carousel-item").on("click", "img", function(event) {
+    event.preventDefault();
+    var recipeID = $(this).attr("dataID");
+    console.log(recipeID);
+    console.log("carousel image clicked");
+    getAPI(recipeID);
+
+});
+
 // pull data from API via GET call to access specific recipe item
 var getAPI = function(recipeID) {
     // prevent page from refreshing
@@ -121,12 +134,16 @@ var getAPI = function(recipeID) {
 };
 // creating data to display for specific recipe
 var createRowGetAPI = function(response) {
-    
+    event.preventDefault();
+
+    $('html,body').scrollTop(0);
+
     $("#search-result").empty();
     $("#search-result").show();
     $("#carouselExampleIndicators").hide();
     $(".olgas-tip-cards").hide();
     $("#recipe-items").hide();
+    
     // $("#random-recipes").empty();
     var recipeName = $("<tr>").text(response.name);
     recipeName.attr("id", "recipe-name");
@@ -134,6 +151,7 @@ var createRowGetAPI = function(response) {
     var ingredients = $("<tr>").text(response.ingredientLines);
     var rating = $("<tr>").text(response.rating);
     var category = $("<tr>").text(response.attributes.course[0]);
+    var urlLink = response.source.sourceRecipeUrl;
     var source = $("<tr>").text(response.source.sourceRecipeUrl);
     var serving = $("<tr>").text(response.numberOfServings);
     var image = $("<img>").attr("src", response.images[0].hostedLargeUrl);
@@ -141,7 +159,21 @@ var createRowGetAPI = function(response) {
     $("#search-result").append(image, recipeName, cookTime, ingredients, rating, category, source, serving);
     console.log(cookTime);
     console.log(recipeName);
+
+    ///////// display youtube video /////////////
+    $("#random-video").empty();
+    $("#random-video").show();
+    
+    var youtubeSearchTerm = response.name + " recipe";
+    console.log(youtubeSearchTerm);
+    
+    var queryURL = "https://www.youtube.com/embed/?listType=search&list=" + youtubeSearchTerm + "&loop=50";
+    
+    var frame = $("<iframe class=embed-responsive-item>").attr("src", queryURL );
+
+    $("#random-video").append(frame);
 };
+
 // display carousel images from Yummly API
 window.onload = function() {
     var appID = "c264894e&";
@@ -166,7 +198,7 @@ window.onload = function() {
     })
     // We store all of the retrieved data inside of an object called "response"
     .then(function(response) {
-        
+        // grabing response to generate carousel images
         for (var i = 0; i < 10; i++){
         var imgUrl = response.matches[i].smallImageUrls;
         var recipeID = response.matches[i].id;
@@ -177,6 +209,7 @@ window.onload = function() {
         // var ingredients = response.matches[i].imageUrlsBySize;
         
         arrayRandomRecipes.push(imgUrl);
+        arrayRecipeIDs.push(recipeID);
         
         }
         function getValue() {
@@ -190,11 +223,11 @@ window.onload = function() {
         var index2 = getValue();
         var index3 = getValue();
         console.log(index1, index2, index3);
+        
         $("#first-image-name").html(response.matches[index1].recipeName);
         $("#second-image-name").html(response.matches[index2].recipeName);
         $("#third-image-name").html(response.matches[index3].recipeName);
         
-
         var randomURL1 = arrayRandomRecipes[index1];
         var randomURL2 = arrayRandomRecipes[index2];
         var randomURL3 = arrayRandomRecipes[index3];
@@ -204,9 +237,14 @@ window.onload = function() {
         var newURL2 = hdImgURL(randomURL2[0]);
         var newURL3 = hdImgURL(randomURL3[0]);
         $("#first-image").attr("src", newURL1);
+        $("#first-image").attr("dataID", response.matches[index1].id);
+        console.log(response.matches[index1].id);
         $("#second-image").attr("src", newURL2);
+        $("#second-image").attr("dataID", response.matches[index2].id);
+        console.log(response.matches[index2].id);
         $("#third-image").attr("src", newURL3);
-
+        $("#third-image").attr("dataID", response.matches[index3].id);
+        console.log(response.matches[index3].id);
     });
 
     $.ajax({
@@ -261,28 +299,12 @@ function hdImgURL(url) {
     var newURL = newArrayUrl.join('');
     return newURL;
 };
-//YouTube function starts here
-$("#search-result").on("click", "tr", function(event) {
-    $("#random-video").empty();
-    $("#random-video").show();
-    event.preventDefault();
-    
-    var recipeRandom = ["cooking", "recipe"];
-    var youtube = $("#input-search").val();
-    var youtube1 = $("#input-search").val() + recipeRandom[0];
-    var youtube2 = $("#input-search").val() + recipeRandom[1];
-    //
-    var queryURL = "https://www.youtube.com/embed/?listType=search&list=" + youtube + "&loop=1";
-    var queryURL1 = "https://www.youtube.com/embed/?listType=search&list=" + youtube1 + "&loop=1";
-    var queryURL2 = "https://www.youtube.com/embed/?listType=search&list=" + youtube2 + "&loop=1";
-    var frame = $("<iframe class=embed-responsive-item>").attr("src", queryURL );
-    var frame1 = $("<iframe class=embed-responsive-item>").attr("src", queryURL1 );
-    var frame2 = $("<iframe class=embed-responsive-item>").attr("src", queryURL2 );
-            // var frame1 = $("<tr>").html(frame);        
-    $("#random-videos").append(frame, frame1, frame2);
-});
 
+//////////////////////////////////////////////////////////////////////////
+/////////////////// YouTube function starts here /////////////////////////
+//////////////////////////////////////////////////////////////////////////
 var player;
+
 function onYouTubeIframeAPIReady(){
     player = new YT.Player('player',    {
       height: '500',
@@ -298,5 +320,6 @@ function onPlayerReady(e){
     } 
 function onPlayerStateChange(e){
     //console.log('player state change');
-}
+};
 
+console.log("End of Javascript");
