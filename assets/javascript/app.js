@@ -107,6 +107,7 @@ var getAPI = function(recipeID) {
 var createRowGetAPI = function(response) {
     $("#search-result").empty();
     var recipeName = $("<tr>").text(response.name);
+    recipeName.attr("id", "recipe-name");
     var cookTime = $("<tr>").text(response.totalTime);
     var ingredients = $("<tr>").text(response.ingredientLines);
     var rating = $("<tr>").text(response.rating);
