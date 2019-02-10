@@ -139,6 +139,8 @@ var createRowGetAPI = function(response) {
     var image = $("<img>").attr("src", response.images[0].hostedLargeUrl);
     
     $("#search-result").append(image, recipeName, cookTime, ingredients, rating, category, source, serving);
+    console.log(cookTime);
+    console.log(recipeName);
 };
 // display carousel images from Yummly API
 window.onload = function() {
