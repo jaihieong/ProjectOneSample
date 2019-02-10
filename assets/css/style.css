@@ -34,7 +34,8 @@ h1, h5, p {
     border: 1px;
     border-color: lightgrey;
     border-style: solid;
-    /* opacity: 0.6; */
+    opacity: 0.7;
+    z-index: 2;
     
 }
 
@@ -43,6 +44,7 @@ h1, h5, p {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    z-index: 1;
 }
 
 .carousel-inner {
@@ -59,8 +61,12 @@ h1, h5, p {
     border-color: lightgrey;
     border-style: solid;
     padding: 10px;
-    opacity: 0.6;
+    /* opacity: 0.6; */
    
+}
+
+#row1, #row2, #row3 {
+margin-top: 30px;
 }
 
 .footer {
