@@ -1,17 +1,63 @@
 console.log("Javascript Line 1");
-$("#search-result").hide();
-$("#carouselExampleIndicators").show();
+
+// function to show and hide contents at HOME/reload
+function displayHome() {
+    // contents to show
+    $("#carouselExampleIndicators").show();
+    $("#random-recipes").show();
+
+    // contents to hide
+   
+    $("#single-recipe-result").hide();
+    $("#random-video").hide();
+};
+
+// function to show and hide contents when List is displayed
+function displayList() {
+    // contents to show
+    $("#recipe-items").show();
+    $("#random-recipes").show();
+    $("#insert-row").empty();
+    $("#result-list").show();
+
+    // contents to hide
+    $("#carouselExampleIndicators").hide();
+    $(".olgas-tip-cards").hide();    
+    $("#random-video").hide();
+    $("#single-recipe-result").hide();
+};
+
+// function to show and hide contents when specific Recipe is displayed
+function displayRecipe() {
+    // scroll page to top
+    $('html,body').scrollTop(0);
+
+    // contents to show
+    $("#single-recipe-result").show();
+    $("#random-video").show();
+
+    // contents to hide
+    $("#carouselExampleIndicators").hide();
+    $(".olgas-tip-cards").hide();
+    $("#recipe-items").hide();
+    $("#random-recipes").hide();
+    $("#result-list").hide();
+
+    // recipe contents empty and show
+    $("#search-result4").empty();
+    $("#search-result1").empty();
+    $("#search-result2").empty();
+    $("#search-result3").empty();
+    $("#single-recipe-result").show();
+};
 
 // click event for search box to call searchAPI via searchTerm
 $("#search-button").on("click", function(event) {
     // hide carousel upon search
     $("#carouselExampleIndicators").hide();
-    $("#search-result").show();
+
     // preventing page refresh upon click
     event.preventDefault();
-    // $("#search-result").empty();
-    // $("#result-table").empty();
-    $("#search-result-list").empty();
     
     var searchTerm = $("#input-search").val();
     console.log(searchTerm);
@@ -36,13 +82,8 @@ var searchAPI = function(searchTerm) {
 };
 // The createRow function takes data returned by API and appends the table data to the tbody
 var createRow = function(response) {
-    $("#search-result").empty();
-    $("#search-result").show();
-    $("#carouselExampleIndicators").hide();
-    $(".olgas-tip-cards").hide();
-    $("#recipe-items").show();
-    $("#random-video").hide();
-
+    
+    displayList();
     // create a new table row element
     for (var i = 0; i < 10; i++) {
         
@@ -60,18 +101,19 @@ var createRow = function(response) {
         tRow.attr("IDdata", recipeID);
         var ratingText = "rating: "
         tRow.append(recipeTitle, ratingText, rating, image);
-        $("#search-result").append(tRow);
+        
+        $("#insert-row").append(tRow);
     }
     
 };
 // click event when a row from the result is clicked
-$("#search-result").on("click", "tr", function(event) {
+$("#result-list").on("click", "tr", function(event) {
     // prevent page from refreshing
     event.preventDefault();
     // empty contents before displaying new content
-    // $("#search-result").empty();
+    
     // $("#result-table").empty();
-    $("#search-result-list").empty();
+    
     var recipeID = $(this).attr("IDdata");
     console.log(recipeID + "from click event");
     getAPI(recipeID);
@@ -82,7 +124,7 @@ $("#search-result").on("click", "tr", function(event) {
 $(".dropdown-menu").on("click", "a", function(event) {
     // prevent page from refreshing
     event.preventDefault();
-    $("#search-result-list").empty();
+    
     //Create variable to read and store the clicked category/cuisine
     var searchTerm = $(this).attr("data");
     searchAPI(searchTerm);
@@ -90,15 +132,18 @@ $(".dropdown-menu").on("click", "a", function(event) {
 
 // click event for random recipe items
 $("#random-recipes").on("click", "img", function(event) {
+    // prevent page from refreshing
     event.preventDefault();
+
     var recipeID = $(this).attr("data");
     console.log(recipeID);
     getAPI(recipeID);
 
 });
 
-// click event for random recipe items
+// click event for carousel items
 $(".carousel-item").on("click", "img", function(event) {
+    // prevent page from refreshing
     event.preventDefault();
     var recipeID = $(this).attr("dataID");
     console.log(recipeID);
@@ -109,8 +154,7 @@ $(".carousel-item").on("click", "img", function(event) {
 
 // pull data from API via GET call to access specific recipe item
 var getAPI = function(recipeID) {
-    // prevent page from refreshing
-    event.preventDefault();
+    
 
     // API credentials
     var appID = "c264894e";
@@ -134,29 +178,9 @@ var getAPI = function(recipeID) {
 };
 // creating data to display for specific recipe
 var createRowGetAPI = function(response) {
-
-    $("#single-recipe-result").show();
-
-    // $("#search-result1").empty();
-    // $("#search-result1").show();
-    // $("#search-result2").empty();
-    // $("#search-result2").show();
-    // $("#search-result3").empty();
-    // $("#search-result3").show();
-    // $("#search-result").show();
-
-
-    event.preventDefault();
-
-    $('html,body').scrollTop(0);
-
-    $("#search-result").empty();
-    $("#search-result").show();
-
-    $("#carouselExampleIndicators").hide();
-    $(".olgas-tip-cards").hide();
-    $("#recipe-items").hide();
     
+    event.preventDefault();
+    displayRecipe();
     // $("#random-recipes").empty();
     var recipeName = $("<tr>").text(response.name);
 
@@ -184,10 +208,10 @@ var createRowGetAPI = function(response) {
     serving.attr("id", "single-recipe-serving");
 
     recipeName.attr("id", "recipe-name");
-    var cookTime = $("<tr>").text(response.totalTime);
+    // var cookTime = $("<tr>").text(response.totalTime);
     var ingredients = $("<tr>").text(response.ingredientLines);
     var rating = $("<tr>").text(response.rating);
-    var category = $("<tr>").text(response.attributes.course[0]);
+    // var category = $("<tr>").text(response.attributes.course[0]);
     var urlLink = response.source.sourceRecipeUrl;
     var source = $("<tr>").text(response.source.sourceRecipeUrl);
     var serving = $("<tr>").text(response.numberOfServings);
@@ -206,9 +230,9 @@ var createRowGetAPI = function(response) {
     // console.log(recipeName);
     // console.log(ingredients);
 
-    $("#search-result").append(image, recipeName, cookTime, ingredients, rating, category, source, serving);
-    console.log(cookTime);
-    console.log(recipeName);
+    // $("#search-result").append(image, recipeName, cookTime, ingredients, rating, category, source, serving);
+    // console.log(cookTime);
+    // console.log(recipeName);
 
     ///////// display youtube video /////////////
     $("#random-video").empty();
@@ -227,7 +251,9 @@ var createRowGetAPI = function(response) {
 
 // display carousel images from Yummly API
 window.onload = function() {
-    $("#single-recipe-result").hide();
+
+    displayHome();
+    
     var appID = "c264894e&";
     //
     var apiKey = "f5984f792fe199d55811bb9a14dd9e5c";
@@ -302,42 +328,39 @@ window.onload = function() {
     $.ajax({
         url: queryURL2,
         method: "GET"
-        })
-        // We store all of the retrieved data inside of an object called "response"
-        .then(function(response) {
+    })
+    // We store all of the retrieved data inside of an object called "response"
+    .then(function(response) {
 
-            for (var i = 0; i < 10; i++){
-                var img = response.matches[i].smallImageUrls;
-                var recipeName = response.matches[i].recipeName;
-                var recipeID = response.matches[i].id;
-                //console.log(imgUrl);
-                arrayRandom.push(img);
-                arrayRandomRecipesNames.push(recipeName);
-                arrayRecipeIDs.push(recipeID);
-                //console.log(arrayRandomRecipes);
-            }
-            for(var j = 0; j < 10; j++) {
+        for (var i = 0; i < 10; i++){
+            var img = response.matches[i].smallImageUrls;
+            var recipeName = response.matches[i].recipeName;
+            var recipeID = response.matches[i].id;
+            //console.log(imgUrl);
+            arrayRandom.push(img);
+            arrayRandomRecipesNames.push(recipeName);
+            arrayRecipeIDs.push(recipeID);
+            //console.log(arrayRandomRecipes);
+        }
+        for(var j = 0; j < 10; j++) {
 
-                var randomPic = arrayRandom[j];
-                // console.log(randomPic);
+            var randomPic = arrayRandom[j];
+            // console.log(randomPic);
 
-                var randomPicName = arrayRandomRecipesNames[j];
-                // console.log(randomPicName);
+            var randomPicName = arrayRandomRecipesNames[j];
+            // console.log(randomPicName);
 
-                var newPic = hdImgURL(randomPic[0]);
-                // console.log(newPic);
+            var newPic = hdImgURL(randomPic[0]);
+            // console.log(newPic);
 
-                var newID = arrayRecipeIDs[j];
+            var newID = arrayRecipeIDs[j];
 
-                $("#random" + j).attr("src", newPic);
-                $("#random" + j).attr("data", newID);
-                // console.log(newID);
-                $("#random" + j + "-name").text(randomPicName);
-            }
-        
-        });
-        
-            
+            $("#random" + j).attr("src", newPic);
+            $("#random" + j).attr("data", newID);
+            // console.log(newID);
+            $("#random" + j + "-name").text(randomPicName);
+        }
+    });       
 };
 function randomURL (url) {
     var newURL = arrayRandomRecipes[Math.floor(Math.random() * arrayRandomRecipes.length)];
@@ -374,4 +397,55 @@ function onPlayerStateChange(e){
     //console.log('player state change');
 };
 
-console.log("End of Javascript");
+//////////////////////////////////////////////////////////////////////////
+/////////////////// Firebase function starts here ////////////////////////
+//////////////////////////////////////////////////////////////////////////
+var config = {
+    apiKey: "AIzaSyBoTmj0O0YVYVuyOeMPPm_1Cr7Evs_bBAY",
+    authDomain: "project1-foodieleaks.firebaseapp.com",
+    databaseURL: "https://project1-foodieleaks.firebaseio.com",
+    projectId: "project1-foodieleaks",
+    storageBucket: "",
+    messagingSenderId: "360937501742"
+    };
+    firebase.initializeApp(config);
+    
+    // Get a reference to the database service
+    var database = firebase.database();
+    // Initializing our click count at 0
+    var clickCounter = 0;
+    // click event to increment 
+    $("#click-button").on("click", function() {
+    
+        // Add 1 to clickCounter
+        clickCounter++;
+    
+        // **** Store Click Data to Firebase in a JSON property called clickCount *****
+        // **** Note how we are using the Firebase .set() method ****
+        // **** .ref() refers to the path you want to save your data to
+        // **** Since we left .ref() blank, it will save to the root directory
+        database.ref().set({
+          clickCount: clickCounter
+        });
+    
+        // Now! go to https://fir-click-counter-7cdb9.firebaseio.com/ to see the impact to the DB
+    });
+    
+    database.ref().on("value", function(snapshot) {
+    
+        // Then we console.log the value of snapshot
+        console.log(snapshot.val());
+    
+        // Update the clickCounter variable with data from the database.
+        clickCounter = snapshot.val().clickCount;
+    
+        // Then we change the html associated with the number.
+        $("#click-value").text(snapshot.val().clickCount);
+    
+        // If there is an error that Firebase runs into -- it will be stored in the "errorObject"
+        // Again we could have named errorObject anything we wanted.
+      }, function(errorObject) {
+    
+        // In case of error this will print the error
+        console.log("The read failed: " + errorObject.code);
+    });

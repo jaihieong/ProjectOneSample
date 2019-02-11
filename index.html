@@ -20,6 +20,8 @@
     <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!-- Firebase JavaScript Link -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
 </head>
 
 <body>
@@ -27,113 +29,97 @@
 
         <!-- Container for the Navbar -->
         <!-- <div class="container"> -->
-            <div class="row">
-                <div class="col-lg">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <a style="text-decoration:nome" href="index.html">
-                        <img src="assets/images/logo.jpg" style="width: 90px"></a>
-                        <h1>Foodie-Leaks</h1>
-                        
-                        <a class="navbar-brand" href="index.html">Home</a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
+        <div class="row">
+            <div class="col-lg">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a style="text-decoration:nome" href="index.html">
+                    <img src="assets/images/logo.jpg" style="width: 90px"></a>
+                    <h1>Foodie-Leaks</h1>
                     
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav mr-auto">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                        Categories
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" data="main dishes">Main Dishes</a>
-                                        <a class="dropdown-item" data="side dishes">Side Dishes</a>
-                                        <a class="dropdown-item" data="soups">Soups</a>
-                                        <a class="dropdown-item" data="desserts">Desserts</a>
-                                        <a class="dropdown-item" data="snacks">Snacks</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                        World Cusine
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" data="asian">Asian</a>
-                                        <a class="dropdown-item" data="greek">Greek</a>
-                                        <a class="dropdown-item" data="italian">Italian</a>
-                                        <a class="dropdown-item" data="mexican">Mexican</a>
-                                    </div>
-                                </li>
-                            </ul>
-                            <form class="form-inline my-2 my-lg-0">
-                                <input id="input-search" class="form-control mr-sm-2" type="search" placeholder="Find your recipe" aria-label="Search">
-                                <button id="search-button" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                            </form>
-                        </div>
-                    </nav>
-                </div>
+                    <a class="navbar-brand" href="index.html">Home</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    Categories
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" data="main dishes">Main Dishes</a>
+                                    <a class="dropdown-item" data="side dishes">Side Dishes</a>
+                                    <a class="dropdown-item" data="soups">Soups</a>
+                                    <a class="dropdown-item" data="desserts">Desserts</a>
+                                    <a class="dropdown-item" data="snacks">Snacks</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    World Cusine
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" data="asian">Asian</a>
+                                    <a class="dropdown-item" data="greek">Greek</a>
+                                    <a class="dropdown-item" data="italian">Italian</a>
+                                    <a class="dropdown-item" data="mexican">Mexican</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <form class="form-inline my-2 my-lg-0">
+                            <input id="input-search" class="form-control mr-sm-2" type="search" placeholder="Find your recipe" aria-label="Search">
+                            <button id="search-button" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                    </div>
+                </nav>
             </div>
-        <!-- </div> -->
+        </div><!-- Closing NAV contents -->
         <br>
         
-        
-        
-
-
+        <!-- result table from search -->
         <div class="container">
-            <!-- result table from search -->
-
-            <div id="search-result" class="table-search">
-
-
+            <div id="result-list">
+                <table class="table">
+                    <tbody id="insert-row">
+                        
+                    </tbody>
+                </table>
             </div>
-                <div class="table-search" id="single-recipe-result">
-                    <div class="row">
-                        <div class="col" id="search-result1">
-                                
-                        </div>
-                        <div class="col"id="search-result2" >
-                                
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2">
-
-                        </div>
-                        <div class="col-8" id="search-result3">
-
-                        </div>
-                        <div class="col-2">
-
-                        </div>
-                    </div>
-                    <div class="row">
-                            <div class="col-8" id="search-result4">
-    
-                            </div>
-                        </div>
-    
-                </div>
             
-
-                    <!-- close result table div-->
-            <div class="container" class="frames">
+            <div id="single-recipe-result">
                 <div class="row">
-                    <div class="col">
-                        <div id="youTubeFrame">
-                
-                        </div>
+                    <div class="col" id="search-result1">
+                            
+                    </div>
+                    <div class="col"id="search-result2" >
+                            
                     </div>
                 </div>
-                
-            </div>
+                <div class="row">
+                    <div class="col-2">
+
+                    </div>
+                    <div class="col-8" id="search-result3">
+
+                    </div>
+                    <div class="col-2">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8" id="search-result4">
+
+                    </div>
+                </div>
+            </div> <!-- close div - single recipe result -->
             
-            <!-- div for the Carousel -->
-            <div class="row">
-                <div class="col-8">
+            
+            <div class="row"><!-- div for the Carousel -->
+                <div class="col-lg-8 col-sm-12">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
                             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -171,22 +157,25 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-4 olgas-tip-cards">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Spices and uses</h5>
-                            <img src="assets/images/spices.jpg" class="img-fluid" alt="Responsive image">
-                        </br>
-                            <a href="https://www.thekitchn.com/quick-guide-to-every-herb-and-spice-in-the-cupboard-108770" target="_blank" id="link-button" class="btn btn-outline-success">Check them out</a>
+
+                <div class="col-lg-4 col-sm-12 olgas-tip-cards">
+                    <div class="row">
+                        <div class="card col-lg-9 col-md-6 col-sm-12">
+                            <div class="card-body">
+                                <h5 class="card-title">Spices and uses</h5>
+                                <img src="assets/images/spices.jpg" class="img-fluid" alt="Responsive image">
+                            </br>
+                                <a href="https://www.thekitchn.com/quick-guide-to-every-herb-and-spice-in-the-cupboard-108770" target="_blank" id="link-button" class="btn btn-outline-success">Check them out</a>
+                            </div>
                         </div>
-                    </div>
-                </br>
-                    <!-- <div class="card text-center" style="width: 18rem;"> -->
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Wine and food pairings</h5>
-                            <img src="assets/images/wine.jpg" class="img-fluid" alt="Responsive image">
-                            <a href="https://www.foodandwine.com/slideshows/15-rules-great-wine-and-food-pairings#15" target="_blank" id="link-button" class="btn btn-outline-success">Look at the pairings</a>
+                        </br>
+                        <!-- <div class="card text-center" style="width: 18rem;"> -->
+                        <div class="card col-lg-9 col-md-6 col-sm-12">
+                            <div class="card-body">
+                                <h5 class="card-title">Wine and food pairings</h5>
+                                <img src="assets/images/wine.jpg" class="img-fluid" alt="Responsive image">
+                                <a href="https://www.foodandwine.com/slideshows/15-rules-great-wine-and-food-pairings#15" target="_blank" id="link-button" class="btn btn-outline-success">Look at the pairings</a>
+                            </div>
                         </div>
                     </div>
                 </br>
@@ -196,22 +185,18 @@
                             <img src="assets/images/sauces.jpg" class="img-fluid" alt="Responsive image">
                             <a href="https://www.101cookbooks.com/seven-magic-sauce-recipes/" target="_blank" id="link-button" class="btn btn-primary">Open the magic</a>
                         </div>
-                    </div> -->
+                    </div> extra tips cards -->
                 </div>    
-            </div>
-            <!-- extra tips cards -->
+            </div> <!-- closing div for the Carousel -->
+            
                 
         </div>
         <br>
         <!-- Empty space for random recipes display -->
 
-        
-
-
-
         <div class="container" id="random-recipes">
             <h5>Random Recipes:</h5>
-            <div id="random-video"></div>
+            
             <div id="recipe-items">
                 <div class="row" id="row1">
                     <div class="col-sm">
@@ -274,21 +259,27 @@
                     </div>
                 </div>
             </div>
-            </div>
-            <br>
+        </div>
         
-            <!-- Footer -->
-            <div class="footer">
-                <div class="card-header">
-                    <h6>Powered By:</h6>
-                    <span>
-                        <img src="assets/images/yum.png" alt="yummly-logo" style="width: 20px">
-                        <i class="fab fa-youtube"></i> 
-                    </span>
-                    <h6 class="Copyright">Copyright &copy; 2019</h6>
+        <!-- Div for youtube video -->
+        <div id="random-video" class="container jumbotron">
+            
+        </div>
 
-                </div>
+        <br>
+        <!-- Footer -->
+        <div class="footer">
+            <div class="card-header">
+                <button id="click-button">add a LIKE for us + <span id="click-value"></span></button>
+                <h6>Powered By:</h6>
+                <span>
+                    <img src="assets/images/yum.png" alt="yummly-logo" style="width: 20px">
+                    <i class="fab fa-youtube"></i> 
+                </span>
+                <h6 class="Copyright">Copyright &copy; 2019</h6>
+
             </div>
+        </div>
     </div>
 
 

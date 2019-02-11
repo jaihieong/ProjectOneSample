@@ -199,9 +199,31 @@ margin-top: 30px;
 
 #single-recipe-result {
     box-shadow: 0 0 12px 12px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    /* opacity: 0.65; */
+    font-family: 'Courgette', cursive;
+    padding: 10%;
+    margin: auto;
+    border-radius: 2%;
 }
 
 
+/* Jai 0210*/
+#random-video {
+    background-color: whitesmoke;
+    text-align: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+#result-list {
+    background-color: white;
+    padding-left: auto;
+    padding-right: auto;
+}
+
+
+/* Jai 0210*/
 
 
 
