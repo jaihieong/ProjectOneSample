@@ -1,5 +1,5 @@
 console.log("Javascript Line 1");
-
+var navBtnFlag = false;
 // function to show and hide contents at HOME/reload
 function displayHome() {
     // contents to show
@@ -10,6 +10,7 @@ function displayHome() {
    
     $("#single-recipe-result").hide();
     $("#random-video").hide();
+    $("#nav-button").hide();
 };
 
 // function to show and hide contents when List is displayed
@@ -17,7 +18,7 @@ function displayList() {
     // contents to show
     $("#recipe-items").show();
     $("#random-recipes").show();
-    $("#insert-row").empty();
+
     $("#result-list").show();
 
     // contents to hide
@@ -45,13 +46,19 @@ function displayRecipe() {
     $("#result-list").hide();
     $("#carouselExampleIndicators").hide();
 
-    // recipe contents empty and show
-    $("#search-result4").empty();
-    $("#search-result1").empty();
-    $("#search-result2").empty();
-    $("#search-result3").empty();
+    // recipe contents show
     $("#single-recipe-result").show();
+    $("#random-video").show();
+    if (navBtnFlag === true) {
+        $("#nav-button").show();
+    }
 };
+
+$("#nav-button").on("click", function(event) {
+    displayList();
+});
+
+
 
 // click event for search box to call searchAPI via searchTerm
 $("#search-button").on("click", function(event) {
@@ -88,7 +95,7 @@ var searchAPI = function(searchTerm) {
 };
 // The createRow function takes data returned by API and appends the table data to the tbody
 var createRow = function(response) {
-    
+    $("#insert-row").empty();
     displayList();
     // create a new table row element
     for (var i = 0; i < 10; i++) {
@@ -105,6 +112,7 @@ var createRow = function(response) {
         
         $("#insert-row").append(tRow);
     }
+    navBtnFlag = true;
     
 };
 // click event when a row from the result is clicked
@@ -181,6 +189,10 @@ var getAPI = function(recipeID) {
 var createRowGetAPI = function(response) {
     
     event.preventDefault();
+    $("#search-result4").empty();
+    $("#search-result1").empty();
+    $("#search-result2").empty();
+    $("#search-result3").empty();
     displayRecipe();
     // $("#random-recipes").empty();
     var recipeName = $("<tr>").text(response.name);
@@ -238,7 +250,7 @@ var createRowGetAPI = function(response) {
 
     ///////// display youtube video /////////////
     $("#random-video").empty();
-    $("#random-video").show();
+    
     
     var youtubeSearchTerm = response.name + " recipe";
     console.log(youtubeSearchTerm);

@@ -35,21 +35,14 @@ h1 {
 }
 
 #carouselExampleIndicators {
-
-    /* width: 60%; */
     display: left;
-    /* margin-left: auto;
-    margin-right: auto; */
     z-index: 1;
     margin-top: 6%;
-    
-
 }
 
 .carousel-inner {
     border-radius: 2%;
-    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 22px 0 rgba(0, 0, 0, 0.19);
-    
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 22px 0 rgba(0, 0, 0, 0.19);   
 }
 
 .card {
@@ -76,6 +69,7 @@ h1 {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 3%;
     font-family: 'Courgette', cursive;
     border: 1px;
     border-color: lightgrey;
@@ -85,8 +79,8 @@ h1 {
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 22px 0 rgba(0, 0, 0, 0.19);
     /* opacity: 0.7; */
 }
-
-.img-fluid {
+/* erase this part *****************/
+/* .img-fluid {
     border: 1px;
     border-style: solid;
     border-color:green black;
@@ -96,10 +90,27 @@ h1 {
     text-align: center;
     
       
-}
+} */
+/***********************************/
 
 #row1, #row2, #row3 {
 margin-top: 30px;
+}
+
+#click-button {
+    display: block;
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.7;
+}
+
+#nav-button {
+    display: block;
+    /* align-content: center; */
+    /* margin-left: auto;
+    margin-right: auto; */
+    opacity: 0.7;
 }
 
 .footer {
@@ -113,7 +124,7 @@ margin-top: 30px;
 
 }
 
-/***************** lines by Jai *******************/
+/*****************  ERASE THIS TOO! lines by Jai *******************/
 /*.table-search {
    /* text-align: center;
     background-color: white;
@@ -122,16 +133,16 @@ margin-top: 30px;
     border-radius: 2%;
 
 }**/
-.table-search {
-    /* text-align: center;*/
-     background-color: white;
-     /* opacity: 0.65; */
-     font-family: 'Courgette', cursive;
-     padding: 10%;
-     margin: auto;
-     border-radius: 2%;
+/* .table-search {
+    text-align: center;
+    background-color: white;
+    opacity: 0.65;
+    font-family: 'Courgette', cursive;
+    padding: 10%;
+    margin: auto;
+    border-radius: 2%;
     
- }
+} **********************************************************************/
 
 .carousel-inner h3 {
     background-color: none;
@@ -146,6 +157,7 @@ margin-top: 30px;
 
 #search-result1 {
     margin-top: 30px;
+    
 }
 
 #search-result2 {
@@ -193,7 +205,7 @@ margin-top: 30px;
     display: block;
     margin-right: auto;
     margin-left: auto;
-    /* width: 330px; */
+    width: 100%;
 
 } 
 
@@ -202,28 +214,51 @@ margin-top: 30px;
 }
 
 #single-recipe-result {
-    box-shadow: 0 0 12px 12px rgba(0, 0, 0, 0.2);
-    background-color: white;
+    /* box-shadow: 0 0 12px 12px rgba(0, 0, 0, 0.2); */
+    background-color: whitesmoke;
     /* opacity: 0.65; */
     font-family: 'Courgette', cursive;
     padding: 10%;
     margin: auto;
+    margin-top: 5%;
+    margin-bottom: 1%;
     border-radius: 2%;
+    border: 1px; 
+    border-color: lightgrey;
+    border-style: solid;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 22px 0 rgba(0, 0, 0, 0.19);
 }
 
 
 /* Jai 0210*/
 #random-video {
+    /* width: 40%; */
     background-color: whitesmoke;
     text-align: center;
     padding-top: 1%;
     padding-bottom: 1%;
+    border: 1px; 
+    border-color: lightgrey;
+    border-style: solid;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 22px 0 rgba(0, 0, 0, 0.19);
 }
 
 #result-list {
-    background-color: white;
-    padding-left: auto;
-    padding-right: auto;
+    font-family: 'Courgette', cursive;
+    background-color: whitesmoke;
+    /* padding-left: auto;
+    padding-right: auto; */
+    border-radius: 2%;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 22px 0 rgba(0, 0, 0, 0.19);
+
+    
+       
+}
+
+.table {
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 1%;   
 }
 
 

@@ -78,7 +78,8 @@
                 </nav>
             </div>
         </div><!-- Closing NAV contents -->
-        <br>
+        <!-- <br> -->
+        
         
         <!-- result table from search -->
         <div class="container">
@@ -90,12 +91,13 @@
                 </table>
             </div>
             
-            <div id="single-recipe-result">
+            <div class="container" id="single-recipe-result">
+                <button id="nav-button" class="back-arrow">Back to List</button>
                 <div class="row">
-                    <div class="col" id="search-result1">
+                    <div class="col-lg-6 col-md-6 col-sm-12" id="search-result1">
                             
                     </div>
-                    <div class="col"id="search-result2" >
+                    <div class="col-lg-6 col-md-6 col-sm-12"id="search-result2" >
                             
                     </div>
                 </div>
@@ -195,7 +197,7 @@
         <!-- Empty space for random recipes display -->
 
         <div class="container" id="random-recipes">
-            <h5>Random Recipes:</h5>
+            <h5>Try any of the following recipes:</h5>
             
             <div id="recipe-items">
                 <div class="row" id="row1">
@@ -266,11 +268,13 @@
             
         </div>
 
+        <button id="click-button" class="far fa-thumbs-up"> add a LIKE for us + <span id="click-value"></span></button>
+
         <br>
         <!-- Footer -->
         <div class="footer">
             <div class="card-header">
-                <button id="click-button">add a LIKE for us + <span id="click-value"></span></button>
+                <!-- <button id="click-button">add a LIKE for us + <span id="click-value"></span></button> -->
                 <h6>Powered By:</h6>
                 <span>
                     <img src="assets/images/yum.png" alt="yummly-logo" style="width: 20px">
