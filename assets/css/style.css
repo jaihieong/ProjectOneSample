@@ -193,6 +193,8 @@ margin-top: 30px;
     display: block;
     margin-right: auto;
     margin-left: auto;
+    /* width: 330px; */
+
 } 
 
 #single-recipe-category {
@@ -223,6 +225,7 @@ margin-top: 30px;
     padding-left: auto;
     padding-right: auto;
 }
+
 
 
 /* Jai 0210*/

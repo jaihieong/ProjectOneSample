@@ -25,6 +25,7 @@ function displayList() {
     $(".olgas-tip-cards").hide();    
     $("#random-video").hide();
     $("#single-recipe-result").hide();
+    $("#carouselExampleIndicators").hide();
 };
 
 // function to show and hide contents when specific Recipe is displayed
@@ -42,6 +43,7 @@ function displayRecipe() {
     $("#recipe-items").hide();
     $("#random-recipes").hide();
     $("#result-list").hide();
+    $("#carouselExampleIndicators").hide();
 
     // recipe contents empty and show
     $("#search-result4").empty();
@@ -54,7 +56,7 @@ function displayRecipe() {
 // click event for search box to call searchAPI via searchTerm
 $("#search-button").on("click", function(event) {
     // hide carousel upon search
-    $("#carouselExampleIndicators").hide();
+    
 
     // preventing page refresh upon click
     event.preventDefault();
@@ -62,7 +64,11 @@ $("#search-button").on("click", function(event) {
     var searchTerm = $("#input-search").val();
     console.log(searchTerm);
     // Here we run our AJAX call to Yummly API
-    searchAPI(searchTerm);
+    if (searchTerm === ""){
+        alert("Please enter a \"recipe name\" or \"ingredient\"");
+    } else {
+        searchAPI(searchTerm);
+    }
 });
 
 // pull data from API via search
@@ -90,17 +96,12 @@ var createRow = function(response) {
         var tRow = $("<tr>");
         var recipeTitle = $("<td>").text(response.matches[i].recipeName);
         var image = $("<img>").attr("src", response.matches[i].smallImageUrls);
-        
-        
         var imageTD = $("<td>").append(image);
-        var rating = $("<td>").text(response.matches[i].rating);
-        // probably will not need this code below to display on html
-        // var recipeIDtd = $("<td>").text(response.matches[i].id);
         var recipeID = response.matches[i].id;
         tRow.addClass("searchResult");
         tRow.attr("IDdata", recipeID);
-        var ratingText = "rating: "
-        tRow.append(recipeTitle, ratingText, rating, image);
+        var ratingText = $("<td>").text("rating: " + response.matches[i].rating);
+        tRow.append(recipeTitle, ratingText, imageTD);
         
         $("#insert-row").append(tRow);
     }
@@ -185,7 +186,8 @@ var createRowGetAPI = function(response) {
     var recipeName = $("<tr>").text(response.name);
 
     recipeName.attr("id", "single-recipe-name");    
-    var category = $("<tr>").text("Recipe category: " + response.attributes.course[0]);
+    var category = $("<tr>").text("Recipe category: " + response.attributes.course);
+    console.log(response.attributes.course);
     category.attr("id", "single-recipe-category");
     var cookTime = $("<tr>").text("Cooking time: " + response.totalTime);
     cookTime.attr("id", "single-recipe-cooktime");
@@ -207,14 +209,14 @@ var createRowGetAPI = function(response) {
     var serving = $("<tr>").text("The meal will serve: " + response.numberOfServings);
     serving.attr("id", "single-recipe-serving");
 
-    recipeName.attr("id", "recipe-name");
+    // recipeName.attr("id", "recipe-name");
     // var cookTime = $("<tr>").text(response.totalTime);
-    var ingredients = $("<tr>").text(response.ingredientLines);
-    var rating = $("<tr>").text(response.rating);
+    // var ingredients = $("<tr>").text(response.ingredientLines);
+    // var rating = $("<tr>").text(response.rating);
     // var category = $("<tr>").text(response.attributes.course[0]);
-    var urlLink = response.source.sourceRecipeUrl;
-    var source = $("<tr>").text(response.source.sourceRecipeUrl);
-    var serving = $("<tr>").text(response.numberOfServings);
+    // var urlLink = response.source.sourceRecipeUrl;
+    // var source = $("<tr>").text(response.source.sourceRecipeUrl);
+    // var serving = $("<tr>").text(response.numberOfServings);
 
     var image = $("<img>").attr("src", response.images[0].hostedLargeUrl);
     image.attr("id", "single-recipe-image");
