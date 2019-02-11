@@ -53,9 +53,11 @@ h1 {
 }
 
 .card {
-    display: right;
+    display: auto;
     margin-left: auto;
+    margin-right: auto;
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 22px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 5%;
 }
 
 .card-title {
@@ -112,19 +114,31 @@ margin-top: 30px;
 }
 
 /***************** lines by Jai *******************/
-.table-search {
-   /* text-align: center;*/
+/*.table-search {
+   /* text-align: center;
     background-color: white;
-    /*opacity: 0.65;*/ 
+    /*opacity: 0.65;
     font-family: 'Courgette', cursive;
     border-radius: 2%;
 
-}
+}**/
+.table-search {
+    /* text-align: center;*/
+     background-color: white;
+     /* opacity: 0.65; */
+     font-family: 'Courgette', cursive;
+     padding: 10%;
+     margin: auto;
+     border-radius: 2%;
+    
+ }
 
 .carousel-inner h3 {
-    background-color: white;
-    color: rgb(49, 170, 49);
-    opacity: 0.5;
+    background-color: none;
+    color: white black;
+    text-shadow: 0 0 3px rgb(0, 0, 0);
+    opacity: none;
+
 }
 /***************** lines by Jai *******************/
 
@@ -164,24 +178,9 @@ margin-top: 30px;
     font-size: 20px;
 }
 /***************** lines by Jai *******************/
-.table-search {
-   /* text-align: center;*/
-    background-color: white;
-    /* opacity: 0.65; */
-    font-family: 'Courgette', cursive;
-    padding: 10%;
-    margin: auto;
-    border-radius: 2%;
-   
-}
 
-.carousel-inner h3 {
-    background-color: none;
-    color: white black;
-    text-shadow: 0 0 3px rgb(0, 0, 0);
-    opacity: none;
 
-}
+
 
 #single-recipe-name {
     font-size: 35px;
@@ -194,6 +193,8 @@ margin-top: 30px;
     display: block;
     margin-right: auto;
     margin-left: auto;
+    /* width: 330px; */
+
 } 
 
 #single-recipe-category {
@@ -202,9 +203,32 @@ margin-top: 30px;
 
 #single-recipe-result {
     box-shadow: 0 0 12px 12px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    /* opacity: 0.65; */
+    font-family: 'Courgette', cursive;
+    padding: 10%;
+    margin: auto;
+    border-radius: 2%;
 }
 
 
+/* Jai 0210*/
+#random-video {
+    background-color: whitesmoke;
+    text-align: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+#result-list {
+    background-color: white;
+    padding-left: auto;
+    padding-right: auto;
+}
+
+
+
+/* Jai 0210*/
 
 
 
