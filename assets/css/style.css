@@ -38,6 +38,7 @@ h1 {
     display: left;
     z-index: 1;
     margin-top: 6%;
+    cursor: pointer;
 }
 
 .carousel-inner {
@@ -103,6 +104,7 @@ margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
     opacity: 0.7;
+    cursor: pointer;
 }
 
 #nav-button {
@@ -111,6 +113,7 @@ margin-top: 30px;
     /* margin-left: auto;
     margin-right: auto; */
     opacity: 0.7;
+    cursor: pointer;
 }
 
 .footer {
@@ -250,7 +253,7 @@ margin-top: 30px;
     padding-right: auto; */
     border-radius: 2%;
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 22px 0 rgba(0, 0, 0, 0.19);
-
+    cursor: pointer;
     
        
 }
@@ -261,6 +264,9 @@ margin-top: 30px;
     margin-bottom: 1%;   
 }
 
+#recipe-items img {
+    cursor: pointer;
+}
 
 
 /* Jai 0210*/

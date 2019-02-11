@@ -109,7 +109,7 @@ var createRow = function(response) {
         tRow.attr("IDdata", recipeID);
         var ratingText = $("<td>").text("rating: " + response.matches[i].rating);
         tRow.append(recipeTitle, ratingText, imageTD);
-        
+
         $("#insert-row").append(tRow);
     }
     navBtnFlag = true;
